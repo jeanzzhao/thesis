@@ -1,0 +1,85 @@
+accession,assembly_f_weighted,novel_count,total_count,sequence_saturation,biome1,biome2,biome3
+DRR014782,0.8443733283882373,1006063,5987910,0.83198428166088,Host-associated,Host-associated:Mammals,Host-associated:Mammals:Respiratory system
+DRR014785,0.8315284176405726,1202281,6611355,0.8181490783659325,Host-associated,Host-associated:Mammals,Host-associated:Mammals:Respiratory system
+DRR121397,0.2131004061652579,913035,1179091,0.2256450095878943,Host-associated,Host-associated:Plants,Host-associated:Plants:Root
+DRR121401,0.1648837743917084,826324,972362,0.1501889214099275,Host-associated,Host-associated:Plants,Host-associated:Plants:Root
+ERR10695318,0.921020528155382,969796,17278385,0.943872300565128,Engineered,Engineered:Food production,Engineered:Food production:Dairy products
+ERR1414265,0.2093767875380262,1972283,4559853,0.5674678547751429,Engineered,Engineered:Wastewater,Engineered:Wastewater:Industrial wastewater
+ERR1414271,0.4593260946980063,2702967,6099145,0.5568285390821173,Engineered,Engineered:Wastewater,Engineered:Wastewater:Industrial wastewater
+ERR1869526,0.846113388654283,555995,5553478,0.8998834604188582,Engineered,Engineered:Food production,Engineered:Food production:Fermented vegetables
+ERR1869527,0.8642341575245305,614100,6942278,0.911542003935884,Engineered,Engineered:Food production,Engineered:Food production:Fermented vegetables
+ERR1877479,0.9528742284849966,140865,1508849,0.9066407572924792,Engineered,Engineered:Modeled,Engineered:Modeled:Simulated communities (microbial mixture)
+ERR1877482,0.9465328174721276,120762,1414390,0.9146190230417351,Engineered,Engineered:Modeled,Engineered:Modeled:Simulated communities (microbial mixture)
+ERR2094168,0.5974947299486485,3647272,8612612,0.5765196435181337,Environmental,Environmental:Aquatic,Environmental:Aquatic:Aquaculture
+ERR2094174,0.8188059516008767,1424640,8861142,0.8392261403778429,Environmental,Environmental:Aquatic,Environmental:Aquatic:Aquaculture
+ERR2094175,0.7058682195539875,2499397,9029911,0.7232091213302103,Environmental,Environmental:Aquatic,Environmental:Aquatic:Aquaculture
+ERR2114805,0.5003664847470619,1242965,2363596,0.4741212119160803,Host-associated,Host-associated:Plants,Host-associated:Plants:Phylloplane
+ERR2135457,0.8159157470949906,2624095,21656327,0.878830098935983,Engineered,Engineered:Food production,Engineered:Food production:Fermented beverages
+ERR2200468,0.0891600237031275,1232691,1523018,0.1906261121011044,Host-associated,Host-associated:Mammals,Host-associated:Mammals:Digestive system
+ERR2241845,0.517299714703569,4201804,8577282,0.5101240696061993,Host-associated,Host-associated:Animal,Host-associated:Animal:Digestive system
+ERR2607414,0.6263672275409328,3809310,10855629,0.6490935716391929,Engineered,Engineered:Wastewater,Engineered:Wastewater:Water and sludge
+ERR2607491,0.4004535376605844,1574645,2647688,0.4052754705237172,Engineered,Engineered:Wastewater,Engineered:Wastewater:Water and sludge
+ERR2683635,0.6629507947412305,685368,2435409,0.7185819712417914,Environmental,Environmental:Aquatic,Environmental:Aquatic:Non-marine Saline and Alkaline
+ERR2683639,0.6622154992787306,133722,299900,0.554111370456819,Environmental,Environmental:Aquatic,Environmental:Aquatic:Non-marine Saline and Alkaline
+ERR2750365,0.8186939051410117,28032,107438,0.7390867290902661,Host-associated,Host-associated:Human,Host-associated:Human:Digestive system
+ERR2848508,0.5183207438734346,2641067,5836971,0.5475278187950565,Environmental,Environmental:Aquatic,Environmental:Aquatic:Freshwater
+ERR2889251,0.6329605884743272,1221816,3232444,0.6220147974721295,Host-associated,Host-associated:Animal,Host-associated:Animal:Digestive system
+ERR3155587,0.2855271976045695,251865,333208,0.2441207894168207,Engineered,Engineered:Solid waste,Engineered:Solid waste:Composting
+ERR3155596,0.1490964396488749,273434,346442,0.2107365735101402,Engineered,Engineered:Solid waste,Engineered:Solid waste:Composting
+ERR3155597,0.1487924259484799,255131,316722,0.1944639147264794,Engineered,Engineered:Solid waste,Engineered:Solid waste:Composting
+ERR3273281,0.8941448998682225,141944,1517493,0.9064615125078008,Host-associated,Host-associated:Human,Host-associated:Human:Skin
+ERR3890099,0.0171665155378071,1656740,2709303,0.3884995513606267,Environmental,Environmental:Terrestrial,Environmental:Terrestrial:Soil
+ERR4398707,0.7958995471009528,1233703,7904330,0.8439206106020372,Host-associated,Host-associated:Animal,Host-associated:Animal:Digestive system
+ERR575692,0.9500007646159666,55665,1637539,0.9660069164764932,Engineered,Engineered:Modeled,Engineered:Modeled:Simulated communities (microbial mixture)
+ERR5866866,0.0329063930656818,3518054,4296946,0.1812664157287524,Environmental,Environmental:Terrestrial,Environmental:Terrestrial:Soil
+ERR5866883,0.1082930910836748,2520542,3329743,0.2430220590598133,Environmental,Environmental:Terrestrial,Environmental:Terrestrial:Soil
+ERR5954451,0.6846662795743509,2585527,9375721,0.7242316617569998,Environmental,Environmental:Aquatic,Environmental:Aquatic:Freshwater
+ERR738544,0.2563815098422821,3092101,4045116,0.2355964575552345,Engineered,Engineered:Modeled,Engineered:Modeled:Simulated communities (sequence read mixture)
+ERR738545,0.2476402431502248,3090137,4005448,0.2285165105126817,Engineered,Engineered:Modeled,Engineered:Modeled:Simulated communities (sequence read mixture)
+ERR738546,0.2574937941246089,3134730,4103073,0.2360043313877184,Engineered,Engineered:Modeled,Engineered:Modeled:Simulated communities (sequence read mixture)
+ERR9456921,0.0450146627565982,11424,13652,0.1631995312042191,Environmental,Environmental:Aquatic,Environmental:Aquatic:Non-marine Saline and Alkaline
+SRR1023996,0.5697140083209492,645725,1101177,0.4136047156814935,Engineered,Engineered:Bioreactor,Engineered:Bioreactor:Continuous culture
+SRR1024014,0.5453451436407651,382460,617564,0.380695765944906,Engineered,Engineered:Bioreactor,Engineered:Bioreactor:Continuous culture
+SRR10527384,0.8697522475203067,963526,7823772,0.8768463600421894,Host-associated,Host-associated:Plants,Host-associated:Plants:Phylloplane
+SRR10810037,0.94092694327812,356581,6477320,0.9449493000191436,Host-associated,Host-associated:Insecta,Host-associated:Insecta:Digestive system
+SRR11267050,0.8520893402669893,1244539,13900211,0.9104661792544012,Host-associated,Host-associated:Insecta,Host-associated:Insecta:Digestive system
+SRR11267079,0.8541205522943763,625386,10141876,0.9383362604709424,Host-associated,Host-associated:Insecta,Host-associated:Insecta:Digestive system
+SRR12456173,0.9052835966303412,830471,7637835,0.8912687954112651,Host-associated,Host-associated:Fish,Host-associated:Fish:Digestive system
+SRR12479795,0.3364209728360597,809793,1653330,0.5102048592839905,Environmental,Environmental:Aquatic,Environmental:Aquatic:Marine
+SRR12480094,0.3119561745253612,1995030,4276252,0.5334629483949964,Environmental,Environmental:Aquatic,Environmental:Aquatic:Marine
+SRR12908323,0.9407826491988712,181926,3623131,0.9497876284351848,Engineered,Engineered:Lab enrichment,Engineered:Lab enrichment:Defined media
+SRR12908327,0.8830386569806425,355020,3386366,0.8951619523701809,Engineered,Engineered:Lab enrichment,Engineered:Lab enrichment:Defined media
+SRR15604576,0.9204561350079936,819443,8398809,0.9024334283587112,Host-associated,Host-associated:Mammals,Host-associated:Mammals:Gastrointestinal tract
+SRR1702229,0.3557982518103902,893977,1346105,0.3358787018843255,Engineered,Engineered:Wastewater,Engineered:Wastewater:Industrial wastewater
+SRR17255031,0.3590874406523826,2393422,4560977,0.4752391866917986,Host-associated,Host-associated:Plants,Host-associated:Plants:Rhizosphere
+SRR17257160,0.8552122081481116,1762428,10314254,0.8291269538252597,Host-associated,Host-associated:Mammals,Host-associated:Mammals:Gastrointestinal tract
+SRR1873849,0.965815255716158,119851,2747399,0.9563765583375404,Engineered,Engineered:Food production,Engineered:Food production:Dairy products
+SRR1916815,0.8054926257709643,1806913,9221044,0.8040446396308271,Engineered,Engineered:Lab enrichment,Engineered:Lab enrichment:Defined media
+SRR19759452,0.8269245312000246,966825,4670543,0.7929951613763111,Host-associated,Host-associated:Mammals,Host-associated:Mammals:Gastrointestinal tract
+SRR2107175,0.7082439743290327,956332,2860179,0.6656391086012449,Engineered,Engineered:Wastewater,Engineered:Wastewater:Activated Sludge
+SRR2107179,0.6802302141842215,919549,2606229,0.6471726007192768,Engineered,Engineered:Wastewater,Engineered:Wastewater:Activated Sludge
+SRR2753158,0.8050371330250482,979052,3918358,0.7501371748063858,Engineered,Engineered:Food production,Engineered:Food production:Fermented vegetables
+SRR3183878,0.7290693251304422,143961,663719,0.7830994743257312,Host-associated,Host-associated:Human,Host-associated:Human:Skin
+SRR3211795,0.7698399419998885,51927,141843,0.6339121422981747,Environmental,Environmental:Aquatic,Environmental:Aquatic:Thermal springs
+SRR3719568,0.7091596268544695,2837495,9896094,0.7132712158958878,Environmental,Environmental:Aquatic,Environmental:Aquatic:Marine
+SRR3961740,0.8178437349030595,415785,2578203,0.8387306973112668,Environmental,Environmental:Aquatic,Environmental:Aquatic:Thermal springs
+SRR4069403,0.1001180898959332,198801,306039,0.35040632076304,Environmental,Environmental:Aquatic,Environmental:Aquatic:Sediment
+SRR4305336,0.740725614950632,259937,702080,0.629761565633546,Host-associated,Host-associated:Human,Host-associated:Human:Digestive system
+SRR490744,0.7805215638113602,261500,533354,0.5097064988731687,Engineered,Engineered:Bioreactor,Engineered:Bioreactor:Continuous culture
+SRR5248299,0.9703228870835272,133787,5151316,0.974028578328334,Environmental,Environmental:Aquatic,Environmental:Aquatic:Thermal springs
+SRR5438753,0.8658292544754539,714177,8439460,0.9153764577354476,Engineered,Engineered:Food production,Engineered:Food production:Fermented beverages
+SRR5574507,0.7197246865730402,1002248,2809266,0.6432349232860113,Host-associated,Host-associated:Mammals,Host-associated:Mammals:Digestive system
+SRR5808811,0.0707320424698884,2173002,2459204,0.1163799343202108,Environmental,Environmental:Aquatic,Environmental:Aquatic:Estuary
+SRR5808830,0.0753686124806973,1013089,1150889,0.1197335277337779,Environmental,Environmental:Aquatic,Environmental:Aquatic:Estuary
+SRR5924454,0.901099231705361,574297,6417598,0.9105121573523304,Engineered,Engineered:Wastewater,Engineered:Wastewater:Activated Sludge
+SRR6323523,0.8558496029861552,348039,3012265,0.8844593686146471,Host-associated,Host-associated:Birds,Host-associated:Birds:Digestive system
+SRR6490004,0.7703471156514641,838167,4273207,0.803855277780833,Host-associated,Host-associated:Microbial,Host-associated:Microbial:Bacteria
+SRR6490006,0.6731388802229874,716795,2442576,0.7065413727147077,Host-associated,Host-associated:Microbial,Host-associated:Microbial:Bacteria
+SRR6714105,0.8281517220204602,760473,3595340,0.7884837039056112,Host-associated,Host-associated:Human,Host-associated:Human:Digestive system
+SRR6765262,0.4549472001781199,365992,505592,0.2761119637968955,Host-associated,Host-associated:Birds,Host-associated:Birds:Digestive system
+SRR7299214,0.6822112412334324,1400965,3387066,0.5863780038534827,Engineered,Engineered:Solid waste,Engineered:Solid waste:Landfill
+SRR7610133,0.6064029417013603,846963,1620416,0.4773175530234211,Host-associated,Host-associated:Fish,Host-associated:Fish:Digestive system
+SRR9109404,0.7575866365198596,1185448,4631672,0.7440561421447806,Host-associated,Host-associated:Fish,Host-associated:Fish:Digestive system
+SRR9182858,0.3550316743491609,10209918,17273633,0.4089304780297231,Host-associated,Host-associated:Invertebrates,Host-associated:Invertebrates:Cnidaria
+SRR9182859,0.4861273399927668,4538695,19203374,0.7636511687998161,Host-associated,Host-associated:Invertebrates,Host-associated:Invertebrates:Cnidaria
+SRR975540,0.4097898009320943,113022,228527,0.5054326184652143,Engineered,Engineered:Lab Synthesis,Engineered:Lab Synthesis:Genetic cross

@@ -1,0 +1,168 @@
+# Get list of metagenomes from file
+with open("metagenome-list.txt") as f:
+    METAGENOMES = set(line.strip() for line in f if line.strip())
+
+print("Metagenomes from file:", METAGENOMES)
+
+# Get mapping pairs
+PAIRS, = glob_wildcards('../grist/outputs/mapping/{pair}.mapped.fq.gz')
+print("Pairs:", PAIRS)
+
+# Build genomeDict only for selected metagenomes
+from collections import defaultdict
+genomeDict = defaultdict(list)
+for pair in PAIRS:
+    metagenome, genome = pair.split('.x.')
+    if metagenome in METAGENOMES:
+        genomeDict[metagenome].append(genome)
+
+print("Filtered genomeDict:", genomeDict)
+
+rule all:
+    input:
+        expand("{metagenome}.megahit.fa.gz.sig", metagenome=METAGENOMES),
+        expand("{metagenome}.x.ma.fq.gz.sig", metagenome=METAGENOMES),
+        expand("../grist/outputs/mapping/{metagenome}.refmapped.sig.zip", metagenome=METAGENOMES),
+        expand("{metagenome}.trim.refmap.mapassem.venn.png", metagenome=METAGENOMES),
+        expand("{metagenome}.tram.upset.png", metagenome=METAGENOMES),
+        expand("{metagenome}.table.csv", metagenome=METAGENOMES),
+        expand("{metagenome}.matches.merged.sig", metagenome=METAGENOMES),
+        expand("{metagenome}.weight.png", metagenome=METAGENOMES),
+
+# assemble trimmed reads
+rule assembly:
+    input: "../grist/outputs/trim/{metagenome}.trim.fq.gz",
+    output:
+        fagz = "{metagenome}.megahit.fa.gz",
+        dir = directory("{metagenome}.megahit.d"),
+    conda: "env-workflow.yml"
+    threads: 32
+    shell: """
+        megahit --12 {input} -f -o {output.dir} -t {threads} -m 100e9 && \
+        gzip -9c {output.dir}/final.contigs.fa > {output.fagz}
+    """
+
+# align trimmed reads to assembly
+rule minimap:
+    input:
+        assembly= "{metagenome}.megahit.fa.gz",
+        trimmed_reads="../grist/outputs/trim/{metagenome}.trim.fq.gz",
+    output: "{metagenome}.x.ma.bam",
+    conda: "env-workflow.yml"
+    threads: 16
+    shell: """
+        minimap2 -ax sr -t 16 {input.assembly} {input.trimmed_reads} \
+        | samtools view -b -F 4 - | samtools sort - > {output}
+    """
+
+# convert .bam to .fq file
+rule bam2fq:
+    input: bamfile = "{metagenome}.x.ma.bam",
+    output: samfile = "{metagenome}.x.ma.fq.gz",
+    conda: "env-workflow.yml"
+    threads: 1
+    shell: """
+        samtools bam2fq {input.bamfile} | gzip -9c > {output.samfile}
+    """
+rule sketch_refmapp_reads:
+    input: expand ("../grist/outputs/mapping/{metagenome}.refmapped.sig.zip", metagenome = METAGENOMES)
+
+# sketch refmapped reads
+rule sketch_refmapp_reads_wc:
+    input: lambda w: expand("../grist/outputs/mapping/{{metagenome}}.x.{genome}.mapped.fq.gz", \
+    genome= genomeDict[w.metagenome]),
+    output: "../grist/outputs/mapping/{metagenome}.refmapped.sig.zip",
+    conda: "env-workflow.yml"
+    shell: """
+        sourmash sketch dna -p abund {input} --name \
+        '{wildcards.metagenome}.refmapped' -o {output}
+    """
+
+# sketch assembly
+rule sketch_assembly:
+    input: assembly = "{metagenome}.megahit.fa.gz",
+    output: assembly_sig = "{metagenome}.megahit.fa.gz.sig",
+    conda: "env-workflow.yml"
+    shell: """
+        sourmash sketch dna -p k=31,k=21,k=51,abund {input.assembly} --name \
+        '{wildcards.metagenome}.assembly' -o {output.assembly_sig}
+    """
+
+# sketch reads mapped to assembly
+rule sketch_mapassem:
+    input: mapassem = "{metagenome}.x.ma.fq.gz",
+    output: mapassem_sig = "{metagenome}.x.ma.fq.gz.sig",
+    conda: "env-workflow.yml"
+    shell: """
+        sourmash sketch dna -p k=31,k=21,k=51,abund {input.mapassem} --name \
+        '{wildcards.metagenome}.ma'  -o {output.mapassem_sig}
+    """
+
+# Venn diagram
+rule Venn:
+    input:
+        trim = "../grist/outputs/sigs/{metagenome}.trim.sig.zip",
+        refmap = "../grist/outputs/mapping/{metagenome}.refmapped.sig.zip",
+        assembly = "{metagenome}.megahit.fa.gz.sig",
+        mapassem = "{metagenome}.x.ma.fq.gz.sig",
+    output:
+        trm = "{metagenome}.trim.refmap.mapassem.venn.png",
+    conda: "env-workflow.yml"
+    shell: """
+        sourmash scripts venn {input.trim} {input.refmap} {input.mapassem} \
+        -k31 -o {output} --ident
+    """
+
+# Upset diagram
+rule Upset:
+    input:
+        trim = "../grist/outputs/sigs/{metagenome}.trim.sig.zip",
+        refmap = "../grist/outputs/mapping/{metagenome}.refmapped.sig.zip",
+        assembly = "{metagenome}.megahit.fa.gz.sig",
+        mapassem = "{metagenome}.x.ma.fq.gz.sig",
+    output:
+        tram= "{metagenome}.tram.upset.png",
+    conda: "env-workflow.yml"
+    shell: """
+        sourmash scripts upset {input.trim} {input.refmap} {input.assembly} \
+        {input.mapassem} -k31 -o {output} --show-singletons
+    """
+
+# table content
+rule table_content:
+    input:
+        trim = "../grist/outputs/sigs/{metagenome}.trim.sig.zip",
+        refmap = "../grist/outputs/mapping/{metagenome}.refmapped.sig.zip",
+        assembly = "{metagenome}.megahit.fa.gz.sig",
+        mapassem = "{metagenome}.x.ma.fq.gz.sig",
+    output:
+        csv = "{metagenome}.table.csv",
+        txt = "{metagenome}.table.txt",
+    conda: "env-workflow.yml"
+    shell: """
+        ./summarize-ref-assembly.py -t ../ -o {output.csv} {wildcards.metagenome} > {output.txt}
+    """
+
+# for the upset plot
+rule merge_gather_matches:
+    input: "../grist/outputs/gather/{metagenome}.matches.sig.zip",
+    output: "{metagenome}.matches.merged.sig",
+    shell: """
+        sourmash sig merge {input} -o {output} -k 31 --set-name {wildcards.metagenome}.matches
+    """
+
+# weighted_upset diagram
+rule weighted_Upset:
+    input:
+        trim = "../grist/outputs/sigs/{metagenome}.trim.sig.zip",
+        assembly = "{metagenome}.megahit.fa.gz.sig",
+        mapassem = "{metagenome}.x.ma.fq.gz.sig",
+        match_merge = "{metagenome}.matches.merged.sig",
+    output:
+        weighted= "{metagenome}.weight.png",
+    conda: "env-workflow.yml"
+    shell: """
+        sourmash scripts weighted_upset {input.trim} {input.assembly} {input.mapassem} \
+        {input.match_merge} -o {output} --show-percentages --force
+    """
+

@@ -1,0 +1,34 @@
+# Load a list of sigpaths instead
+import os.path
+
+# Read the full list of metagenomic signatures
+META_LIST = open("../zyzhao-sigpaths-oct4.txt").readlines()
+META_DICT = {}
+for line in META_LIST:
+    line = line.strip()
+    acc = os.path.basename(line).split('.')[0]
+    META_DICT[acc] = line
+
+# Read the list of accessions (from 1901.txt)
+with open("1901.txt") as f:
+    FILTERED_ACCESSIONS = set(line.strip() for line in f)
+
+# Filter META_DICT to keep only accessions in fw_lt10_list.txt
+FILTERED_META_DICT = {acc: path for acc, path in META_DICT.items() if acc in FILTERED_ACCESSIONS}
+
+def get_filename(w):
+    return FILTERED_META_DICT[w.acc]
+
+rule all:
+    input:
+        expand("fmg_g_k21/{acc}.fmg.g.k21.csv", acc=FILTERED_META_DICT)
+
+rule fmg:
+    input:
+        get_filename,
+    output:
+        "fmg_g_k21/{acc}.fmg.g.k21.csv",
+    shell: """
+        sourmash scripts fastmultigather {input} gtdb_k21.s10_000.rocksdb \
+           -c 1 -s 10_000 -o {output} -t 0 -k 21
+    """

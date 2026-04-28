@@ -1,0 +1,14 @@
+channels:
+ - conda-forge
+ - bioconda
+ - defaults
+dependencies:
+ - megahit==1.2.9
+ - sourmash=4.9.3
+ - minimap2=2.17
+ - samtools=1.21
+ - python=3.12
+ - pip
+ - pip:
+    - sourmash_plugin_betterplot=0.5.9
+

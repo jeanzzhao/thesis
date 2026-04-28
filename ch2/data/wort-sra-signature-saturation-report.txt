@@ -1,0 +1,59 @@
+================================================================================
+SOURMASH SATURATION PROCESSING REPORT
+================================================================================
+
+Generated: 2025-12-05 01:14:30
+
+PARAMETERS:
+--------------------------------------------------------------------------------
+K-mer size: 31
+Molecule type: None
+Saturation threshold: 0
+
+SUMMARY STATISTICS:
+--------------------------------------------------------------------------------
+Total files to process: 5150028
+Files completed: 5150011
+Files skipped (already processed): 5149985
+Results written (above threshold): 0
+Files below threshold: 0
+Files with errors: 26
+Files missing/unaccounted: 17
+
+Success rate: 100.00%
+
+
+ERROR DETAILS:
+================================================================================
+Total errors: 26
+
+1. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/ERR5751998.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR13867090.sig'.
+2. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR18132371.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR25783207.sig'.
+3. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR21634362.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR13867081.sig'.
+4. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR19238155.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR13867086.sig'.
+5. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR10542338.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR3100551.sig'.
+6. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR10258190.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR13867088.sig'.
+7. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/ERR12085601.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR13809033.sig'.
+8. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR34637992.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR13867091.sig'.
+9. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/ERR12361369.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR6394679.sig'.
+10. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR34632501.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR13867089.sig'.
+11. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR8358192.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR13867080.sig'.
+12. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR12122051.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR13867083.sig'.
+13. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR7217802.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR13867084.sig'.
+14. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/ERR5642410.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR22484126.sig'.
+15. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/ERR12160684.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR5658385.sig'.
+16. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR7521573.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR13867078.sig'.
+17. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/ERR3300412.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR13867095.sig'.
+18. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/ERR13943814.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR13867092.sig'.
+19. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR25390959.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR5209112.sig'.
+20. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/ERR12219431.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR684516.sig'.
+21. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR22462931.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR13867085.sig'.
+22. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/DRR679867.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR26494657.sig'.
+23. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/ERR4897593.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR13867082.sig'.
+24. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR869604.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR22484171.sig'.
+25. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR7873938.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR25078538.sig'.
+26. /group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR14193502.sig: Error while reading signatures from '/group/ctbrowngrp/irber/data/wort-data/wort-sra/sigs/SRR13867077.sig'.
+
+================================================================================
+END OF REPORT
+================================================================================

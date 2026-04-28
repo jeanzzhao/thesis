@@ -1,0 +1,132 @@
+import glob
+
+DB_K31 = '/group/ctbrowngrp5/sourmash-db.new/gtdb-rs226/gtdb-rs226-k31.dna.rocksdb'
+TAXDB = '/group/ctbrowngrp5/sourmash-db.new/gtdb-rs226/gtdb-rs226.lineages.sqldb'
+
+SAMPLES = [ x.strip() for x in open('SAMPLE-LIST.BIG.txt') ]
+print(f"loaded {len(SAMPLES)} accessions")
+
+# subset for testing
+#SAMPLES = SAMPLES[:100]
+print(f"subsetting to {len(SAMPLES)} total.")
+
+ATLAS_PATH = '/group/ctbrowngrp2/scratch/annie/2023-swine-sra/results/atlas/atlas_{{sample}}/{{sample}}/sequence_quality_control/{{sample}}_QC_R{r}.fastq.gz'
+
+CONTIGS_PATH='/group/ctbrowngrp2/scratch/annie/2023-swine-sra/results/atlas/atlas_{sample}/{sample}/assembly/{sample}_final_contigs.fasta'
+
+MAGS_PATH='/group/ctbrowngrp2/scratch/annie/2023-swine-sra/results/MAGs/genomes/{sample}/*.fasta'
+
+rmlist = set()
+for s in SAMPLES:
+    p = MAGS_PATH.format(sample=s)
+    x = glob.glob(p)
+    if not x:
+        rmlist.add(s)
+
+for s in rmlist:
+    print(f'removing sample {s} b/c it does not have MAGs')
+    SAMPLES.remove(s)
+
+rule all:
+    input:
+        expand('outputs/sigs/{sample}.reads.sig.zip', sample=SAMPLES),
+        expand('outputs/sigs/{sample}.contigs.sig.zip', sample=SAMPLES),
+        expand('outputs/sigs/{sample}.bins.sig.zip', sample=SAMPLES),
+        expand('outputs/gather/{sample}.reads.gather.csv', sample=SAMPLES),
+        expand('outputs/gather/{sample}.contigs.gather.csv', sample=SAMPLES),
+        expand('outputs/tax/{sample}.contigs.gather.with-lineages.csv', sample=SAMPLES),
+        expand('outputs/tax/{sample}.reads.gather.with-lineages.csv', sample=SAMPLES),
+        expand('outputs/tax/{sample}.bins.gather.with-lineages.csv', sample=SAMPLES),
+        expand('outputs/tax/{sample}.contigs.gather.json', sample=SAMPLES),
+        expand('outputs/tax/{sample}.reads.gather.json', sample=SAMPLES),
+        expand('outputs/tax/{sample}.bins.gather.json', sample=SAMPLES),
+
+rule make_sigs:
+    input:
+        expand('outputs/sigs/{sample}.reads.sig.zip', sample=SAMPLES),
+        expand('outputs/sigs/{sample}.contigs.sig.zip', sample=SAMPLES),
+        expand('outputs/sigs/{sample}.bins.sig.zip', sample=SAMPLES)
+
+rule read_sigs:
+    input:
+        expand(ATLAS_PATH, r=[1,2])
+    output:
+        'outputs/sigs/{sample}.reads.sig.zip'
+    shell: """
+        sourmash scripts singlesketch -p dna,k=21,k=31,k=51,abund {input} -o {output} --name {wildcards.sample:q}-reads
+    """
+
+rule contig_sigs:
+    input:
+        contigs=CONTIGS_PATH,
+        reads_sig='outputs/sigs/{sample}.reads.sig.zip',
+    output:
+        flat_sig='outputs/sigs/{sample}.flat-contigs.sig.zip',
+        sig='outputs/sigs/{sample}.contigs.sig.zip',
+    params:
+        flat_name=lambda w: f"{w.sample}-contigs",
+    shell: """
+        sourmash scripts singlesketch -p dna,k=21,k=31,k=51 {input.contigs} \
+            -o {output.flat_sig} --name {params.flat_name:q}
+        sourmash sig inflate -k 31 {input.reads_sig} {output.flat_sig} \
+            -o {output.sig}
+    """
+
+
+def get_bins_for_sample(w):
+    path = MAGS_PATH.format(sample=w.sample)
+    bins = glob.glob(path)
+    #print(f"got {len(bins)} bins for sample {w.sample}")
+    assert len(bins)
+
+    return bins
+
+
+rule bin_sigs:
+    input:
+        bins=get_bins_for_sample,
+        reads_sig='outputs/sigs/{sample}.reads.sig.zip',
+    output:
+        flat_sig='outputs/sigs/{sample}.flat-bins.sig.zip',
+        sig='outputs/sigs/{sample}.bins.sig.zip',
+    params:
+        flat_name=lambda w: f"{w.sample}-bins",
+    shell: """
+        sourmash scripts singlesketch -p dna,k=21,k=31,k=51 {input.bins} \
+            -o {output.flat_sig} --name {params.flat_name:q}
+        sourmash sig inflate -k 31 {input.reads_sig} {output.flat_sig} \
+            -o {output.sig}
+    """
+
+rule gather_rs226:
+    input:
+        sig='outputs/sigs/{sample}.{typ}.sig.zip',
+        db=DB_K31,
+    output:
+        csv='outputs/gather/{sample}.{typ}.gather.csv',
+    shell: """
+        sourmash gather {input.sig} {input.db} -k 31 --threshold-bp=0 \
+           -o {output.csv}
+    """
+
+rule gather_annotate_rs226:
+    input:
+        csv='outputs/gather/{sample}.{typ}.gather.csv',
+        tax=TAXDB,
+    output:
+        csv='outputs/tax/{sample}.{typ}.gather.with-lineages.csv',
+    params:
+        outdir='outputs/tax'
+    shell: """
+        sourmash tax annotate -g {input.csv} --output={params.outdir} \
+           -t {input.tax}
+    """
+
+rule gather_convert_json:
+    input:
+        csv='outputs/tax/{sample}.{typ}.gather.with-lineages.csv',
+    output:
+        'outputs/tax/{sample}.{typ}.gather.json',
+    shell: """
+        taxburst -F tax_annotate {input.csv} --save-json {output}
+    """
