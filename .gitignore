@@ -1,0 +1,6 @@
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+
+# ignore large data
+ch2/data/wort-sra-signature-saturation.csv
